@@ -24,5 +24,5 @@ gem 'fluent-plugin-remote_syslog_tls'
 gem 'fluent-plugin-concat'
 gem 'fluent-plugin-detect-exceptions'
 gem 'fluent-plugin-rewrite-tag-filter'
-gem 'fluent-plugin-multi-format-parser' 
+gem 'fluent-plugin-multi-format-parser'
 
