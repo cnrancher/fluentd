@@ -39,6 +39,18 @@ steps:
     event:
     - tag
 
+- name: push-manifest
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    spec: manifest.tmpl
+  when:
+    event:
+    - tag
+
 volumes:
 - name: socket
   host:
@@ -51,33 +63,3 @@ trigger:
 
 node:
   instance: agent-amd64
----
-kind: pipeline
-name: manifest
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: push-manifest
-  image: plugins/manifest
-  settings:
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    spec: manifest.tmpl
-  when:
-    event:
-    - tag
-trigger:
-  event:
-    exclude:
-    - promote
-
-node:
-  instance: agent-amd64
-
-depends_on:
-- linux-amd64
